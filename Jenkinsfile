@@ -16,7 +16,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Change 8090 to any free port on your system
+                    
                     bat 'docker run -d -p 8090:80 rajhub-php-app'
                 }
             }
