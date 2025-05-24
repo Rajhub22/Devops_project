@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout SCM') {
             steps {
@@ -17,8 +16,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Run container mapping port 8081 on host to 80 in container
-                    bat 'docker run -d -p 8081:80 rajhub-php-app'
+                    // Change 8090 to any free port on your system
+                    bat 'docker run -d -p 8090:80 rajhub-php-app'
                 }
             }
         }
