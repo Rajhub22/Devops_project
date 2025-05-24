@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Events | Aura & Amour</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            font-size: 1em;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+        .cta {
+            background-color: #f7b731;
+            color: #333;
+            font-weight: bold;
+        }
+        .cta:hover {
+            background-color: #ffa502;
+        }
+        /* Master Events Section */
+        .master-events {
+            padding: 50px 10%;
+            text-align: center;
+        }
+        .master-events h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #222;
+        }
+        .category {
+            margin-bottom: 50px;
+        }
+        .category h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .category-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .category-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .category-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Aura & Amour</div>
+        <nav>
+            <ul>
+                <li><a href="Menu.html">Menu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Master Events Section -->
+    <section id="master-events" class="master-events">
+        <h2>Explore Our Master Events</h2>
+
+        <!-- Category 1: Birthday -->
+        <div class="category">
+            <h3>Birthday Events</h3>
+            <div class="category-images">
+                <img src="Images/Birthdays/bday 1.jpg" alt="Birthday Event 1">
+                <img src="Images/Birthdays/bday 2.jpeg" alt="Birthday Event 2">
+                <img src="Images/Birthdays/bday 3.jpeg" alt="Birthday Event 3">
+                <img src="Images/Birthdays/bday 4.jpg" alt="Birthday Event 4">
+                <img src="Images/Birthdays/bday 5.jpeg" alt="Birthday Event 5">
+                <img src="Images/Birthdays/bday 6.jpeg" alt="Birthday Event 6">
+                <img src="Images/Birthdays/bday 7.webp" alt="Birthday Event 7">
+                <img src="Images/Birthdays/bday 10.jpg" alt="Birthday Event 8">
+            </div>
+        </div>
+
+        <!-- Category 2: Anniversary -->
+        <div class="category">
+            <h3>Anniversary Events</h3>
+            <div class="category-images">
+                <img src="Images/Anniversaries/anniversary 1.jpeg" alt="Anniversary Event 1">
+                <img src="Images/Anniversaries/anniversary 3.jpeg" alt="Anniversary Event 2">
+                <img src="Images/Anniversaries/anniversary 4.jpeg" alt="Anniversary Event 3">
+                <img src="Images/Anniversaries/anniversary 5.jpeg" alt="Anniversary Event 4">
+                <img src="Images/Anniversaries/anniversary 6.jpeg" alt="Anniversary Event 5">
+                <img src="Images/Anniversaries/anniversary 7.jpeg" alt="Anniversary Event 6">
+                <img src="Images/Anniversaries/anniversary 8.webp" alt="Anniversary Event 7">
+                <img src="Images/Anniversaries/anniversary 29.jpg" alt="Anniversary Event 8">
+            </div>
+        </div>
+
+        <!-- Category 4: Wedding Events -->
+        <div class="category">
+            <h3>Wedding Events</h3>
+            <div class="category-images">
+                <img src="Images/Weddings/wedding 1.jpeg" alt="Wedding Event 1">
+                <img src="Images/Weddings/wedding 13.webp" alt="Wedding Event 2">
+                <img src="Images/Weddings/wedding 6.jpg" alt="Wedding Event 3">
+                <img src="Images/Weddings/wedding 16.jpeg" alt="Wedding Event 4">
+                <img src="Images/Weddings/wedding 10.jpeg" alt="Wedding Event 5">
+                <img src="Images/Weddings/wedding 7.jpeg" alt="Wedding Event 6">
+                <img src="Images/Weddings/wedding 9.jpeg" alt="Wedding Event 7">
+                <img src="Images/Weddings/wedding 33.jpeg" alt="Wedding Event 8">
+            </div>
+        </div>
+
+        <!-- Category 5: Organizational Events -->
+        <div class="category">
+            <h3>Organizational Events</h3>
+            <div class="category-images">
+                <img src="Images/organizational events/OE 1.jpg" alt="Organizational Event 1">
+                <img src="Images/organizational events/OE 9.jpeg" alt="Organizational Event 2">
+                <img src="Images/organizational events/OE 6.webp" alt="Organizational Event 3">
+                <img src="Images/organizational events/OE 3.jpg" alt="Organizational Event 4">
+                <img src="Images/organizational events/OE 11.jpg" alt="Organizational Event 5">
+                <img src="Images/organizational events/OE 17.jpg" alt="Organizational Event 6">
+                <img src="Images/organizational events/OE 16.jpeg" alt="Organizational Event 7">
+                <img src="Images/organizational events/OE 23.jpeg" alt="Organizational Event 8">
+            </div>
+        </div>
+
+        <!-- Category 6: School Events -->
+        <div class="category">
+            <h3>School Events</h3>
+            <div class="category-images">
+                <img src="Images/school events/SE 1.jpeg" alt="School Event 1">
+                <img src="Images/school events/SE 1.jpeg" alt="School Event 2">
+                <img src="Images/school events/SE 30.jpg" alt="School Event 3">
+                <img src="Images/school events/SE 14.jpg" alt="School Event 4">
+                <img src="Images/school events/SE 10.jpeg" alt="School Event 5">
+                <img src="Images/school events/SE 11.jpg" alt="School Event 6">
+                <img src="Images/school events/SE 12.jpg" alt="School Event 7">
+                <img src="Images/school events/SE 1.jpeg" alt="School Event 8">
+            </div>
+        </div>
+
+        <!-- Add more categories as needed -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Aura & Amour | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

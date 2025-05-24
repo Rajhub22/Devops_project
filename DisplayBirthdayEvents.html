@@ -1,0 +1,121 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root"; // Change as needed
+$password = ""; // Change as needed
+$dbname = "aura_amour";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Insert data into birthday_events table
+    $event_name = $_POST['event_name'];
+    $event_date = $_POST['event_date'];
+    $event_description = $_POST['event_description'];
+
+    $sql = "INSERT INTO birthday_events (event_name, event_date, event_description)
+            VALUES ('$event_name', '$event_date', '$event_description')";
+
+    if ($conn->query($sql) === TRUE) {
+        $event_id = $conn->insert_id; // Get the inserted event_id
+        
+        // Insert data into birthday_budget table
+        if (isset($_POST['budget_category'])) {
+            foreach ($_POST['budget_category'] as $index => $category) {
+                $amount = $_POST['budget_amount'][$index];
+
+                $sql = "INSERT INTO birthday_budget (event_id, category, amount)
+                        VALUES ('$event_id', '$category', '$amount')";
+                $conn->query($sql);
+            }
+        }
+
+        // Insert data into birthday_todo table
+        if (isset($_POST['todo'])) {
+            foreach ($_POST['todo'] as $task_description) {
+                $sql = "INSERT INTO birthday_todo (event_id, task_description)
+                        VALUES ('$event_id', '$task_description')";
+                $conn->query($sql);
+            }
+        }
+
+        // Redirect to DisplayBirthdayEvents.php
+        header("Location: DisplayBirthdayEvents.php");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Birthday Event</title>
+</head>
+<body>
+    <h2>Create Birthday Event</h2>
+    <form method="POST" action="InsertBirthdayEvent.php">
+        <label>Event Name: </label>
+        <input type="text" name="event_name" required><br><br>
+
+        <label>Event Date: </label>
+        <input type="date" name="event_date" required><br><br>
+
+        <label>Event Description: </label>
+        <textarea name="event_description" required></textarea><br><br>
+
+        <h3>Budget Details</h3>
+        <div id="budget-fields">
+            <label>Category: </label>
+            <input type="text" name="budget_category[]">
+            <label>Amount: </label>
+            <input type="number" name="budget_amount[]" step="0.01"><br><br>
+        </div>
+
+        <button type="button" onclick="addBudgetField()">Add More Budget</button><br><br>
+
+        <h3>To-Do Tasks</h3>
+        <div id="todo-fields">
+            <input type="text" name="todo[]" placeholder="Task description"><br><br>
+        </div>
+
+        <button type="button" onclick="addTodoField()">Add More Task</button><br><br>
+
+        <button type="submit">Submit Event</button>
+    </form>
+
+    <script>
+        function addBudgetField() {
+            const budgetFields = document.getElementById('budget-fields');
+            const newField = document.createElement('div');
+            newField.innerHTML = `
+                <label>Category: </label>
+                <input type="text" name="budget_category[]">
+                <label>Amount: </label>
+                <input type="number" name="budget_amount[]" step="0.01"><br><br>
+            `;
+            budgetFields.appendChild(newField);
+        }
+
+        function addTodoField() {
+            const todoFields = document.getElementById('todo-fields');
+            const newField = document.createElement('div');
+            newField.innerHTML = `
+                <input type="text" name="todo[]" placeholder="Task description"><br><br>
+            `;
+            todoFields.appendChild(newField);
+        }
+    </script>
+</body>
+</html>

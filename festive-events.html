@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festive Event Management</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f7f7f7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-size: 1em;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        /* Event Section */
+        .event-section {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .event-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        /* Event Section Items (Budgeting, To-Do List, Materials, Contacts) */
+        .event-section-item {
+            margin-bottom: 50px;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-section-item h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Table for Budgeting */
+        #budgeting table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        #budgeting th, #budgeting td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        #budgeting input[type="text"], #budgeting input[type="number"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        .add-row-btn {
+            padding: 10px 20px;
+            background-color: #f7b731;
+            color: #333;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        .add-row-btn:hover {
+            background-color: #ffa502;
+        }
+
+        /* To-Do List Styles */
+        #todo input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        #todo ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #todo li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #todo li button {
+            background-color: #ff6b6b;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Materials Needed Section */
+        #materials textarea {
+            padding: 15px;
+            width: 100%;
+            height: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            resize: vertical;
+        }
+
+        /* Contacts Section */
+        #contacts ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #contacts li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Aura & Amour</div>
+        <nav>
+            <ul>
+                <li><a href="FestiveEventDisplay.php">Back</a></li>
+                
+
+                
+                
+            </ul>
+        </nav>
+    </header>
+    <!-- Main Event Section -->
+    <section class="event-section">
+        <h1>Festive Event Management</h1>
+
+        <!-- Form to Capture Data -->
+        <form id="eventForm" method="POST" action="save_festive_event.php">
+            
+            <!-- Budgeting Section -->
+            <section id="budgeting" class="event-section-item">
+                <h2>Budgeting</h2>
+                <table id="budgetingTable">
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Category" name="category[]"></td>
+                        <td><input type="number" placeholder="Amount" name="amount[]"></td>
+                    </tr>
+                </table>
+                <button type="button" class="add-row-btn" onclick="addBudgetRow()">Add Row</button>
+                <button type="button" class="add-row-btn" onclick="calculateSum()">Calculate Total</button>
+                <div id="totalAmount" style="margin-top: 15px;"></div>
+            </section>
+
+            <!-- To-Do List Section -->
+            <section id="todo" class="event-section-item">
+                <h2>To-Do List</h2>
+                <input id="todoInput" type="text" placeholder="Add a task" name="todo_list">
+                <ul id="todoList"></ul>
+                <button type="button" class="add-row-btn" onclick="addTodoRow()">Add Task</button>
+            </section>
+
+            <!-- Materials Needed Section -->
+            <section id="materials" class="event-section-item">
+                <h2>Materials Needed</h2>
+                <textarea placeholder="List materials needed for the event" name="materials"></textarea>
+            </section>
+
+            <!-- Submit Button -->
+            <button type="submit" class="add-row-btn" style="font-size: 1.5em; padding: 15px 30px;">Submit</button>
+        </form>
+        
+        <!-- Contacts for Assistance Section -->
+        <section id="contacts" class="event-section-item">
+            <h2>Contacts for Assistance</h2>
+            <ul>
+                <li>Event Planner: 123-456-7890</li>
+                <li>Photographer: 123-456-7891</li>
+                <li>Caterer: 123-456-7892</li>
+            </ul>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Aura & Amour | All Rights Reserved</p>
+    </footer>
+
+    <!-- Script for Handling Form Data -->
+    <script>
+        // Function to add a new row in the Budgeting table
+        function addBudgetRow() {
+            const table = document.getElementById("budgetingTable");
+            const newRow = table.insertRow();
+            const categoryCell = newRow.insertCell(0);
+            const amountCell = newRow.insertCell(1);
+            categoryCell.innerHTML = '<input type="text" placeholder="Category" name="category[]">';
+            amountCell.innerHTML = '<input type="number" placeholder="Amount" name="amount[]">';
+        }
+
+        // Function to calculate the total sum of all amounts in the Budgeting section
+        function calculateSum() {
+            const amounts = document.querySelectorAll('input[name="amount[]"]');
+            let total = 0;
+            amounts.forEach(function(input) {
+                if (input.value) {
+                    total += parseFloat(input.value);
+                }
+            });
+    
+            // Format the total amount in INR (Indian Rupees)
+            const formattedTotal = total.toLocaleString('en-IN', {
+                style: 'currency',
+                currency: 'INR'
+            });
+    
+            // Display the total sum in INR
+            document.getElementById('totalAmount').innerText = "Total Budget: " + formattedTotal;
+        }
+
+        // Function to add a new task to the To-Do list
+        function addTodoRow() {
+            const todoInput = document.getElementById("todoInput");
+            if (todoInput.value) {
+                const ul = document.getElementById("todoList");
+                const li = document.createElement("li");
+                li.innerHTML = todoInput.value + ' <button type="button" onclick="removeTodoRow(this)">Remove</button>';
+                ul.appendChild(li);
+                todoInput.value = ""; // Reset the input field
+            }
+        }
+
+        // Function to remove a task from the To-Do list
+        function removeTodoRow(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        header .dashboard-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        header .dashboard-link:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="datetime-local"], input[type="number"], input[type="file"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+        button {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .attendees-list ul, .materials-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attendees-list ul li, .materials-list ul li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Enhanced Meeting Management</h1>
+        <a href="Menu.html" class="dashboard-link">Dashboard</a> 
+    </header>
+
+    <div class="content">
+        <form action="save_meeting.php" method="POST" id="meetingForm" enctype="multipart/form-data">
+
+            <!-- Meeting Details Section -->
+            <div class="section">
+                <h2>Meeting Details</h2>
+                <div class="input-group">
+                    <label for="meeting_title">Meeting Title</label>
+                    <input type="text" id="meeting_title" name="meeting_title" placeholder="Meeting Title" required>
+                </div>
+                <div class="input-group">
+                    <label for="meeting_datetime">Meeting Date & Time</label>
+                    <input type="datetime-local" id="meeting_datetime" name="meeting_datetime" required>
+                </div>
+                <div class="input-group">
+                    <label for="meeting_timezone">Time Zone</label>
+                    <select id="meeting_timezone" name="meeting_timezone">
+                        <option value="UTC">UTC</option>
+                        <option value="Asia/Kolkata">Asia/Kolkata</option>
+                        <option value="America/New_York">America/New_York</option>
+                        <option value="Europe/London">Europe/London</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="meeting_description">Meeting Description</label>
+                    <textarea id="meeting_description" name="meeting_description" placeholder="Describe the meeting" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="meeting_type">Meeting Type</label>
+                    <select id="meeting_type" name="meeting_type">
+                        <option value="In-person">In-person</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
+                </div>
+            </div>
+
+            
+
+            <!-- Attendees Section -->
+            <div class="section attendees-list">
+                <h2>Attendees</h2>
+                <input type="text" id="attendeeInput" name="attendees[]" placeholder="Enter Attendee Name">
+                <button type="button" onclick="addAttendee()">Add Attendee</button>
+                <ul id="attendeesList"></ul>
+            </div>
+
+            
+
+            <!-- Meeting Reminder Section -->
+            <div class="section">
+                <h2>Set Reminder</h2>
+                <input type="datetime-local" name="reminder_time" placeholder="Reminder Time">
+                
+            </div>
+
+            
+            <!-- Priority Section -->
+            <div class="section">
+                <h2>Priority Level</h2>
+                <select name="priority_level" id="priority_level">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+
+           
+            <button type="submit">Submit Meeting</button>
+
+        </form>
+    </div>
+
+    <script>
+        // Add Agenda Item Row
+        function addAgendaRow() {
+            var table = document.getElementById("agendaTable");
+            var row = table.insertRow();
+            var agendaCell = row.insertCell(0);
+            var timeCell = row.insertCell(1);
+            agendaCell.innerHTML = '<input type="text" name="agenda_item[]" placeholder="Agenda Item">';
+            timeCell.innerHTML = '<input type="datetime-local" name="agenda_time[]">';
+        }
+
+        // Add Attendee
+        function addAttendee() {
+            var attendeeInput = document.getElementById("attendeeInput");
+            if (attendeeInput.value) {
+                var li = document.createElement("li");
+                li.textContent = attendeeInput.value;
+                document.getElementById("attendeesList").appendChild(li);
+                attendeeInput.value = ""; // Clear the input field
+            }
+        }
+
+        // Add Material
+        function addMaterial() {
+            var materialInput = document.querySelector("input[name='materials[]']");
+            if (materialInput.value) {
+                var li = document.createElement("li");
+                li.textContent = materialInput.value;
+                document.getElementById("materialsList").appendChild(li);
+                materialInput.value = ""; // Clear the input field
+            }
+        }
+
+        // Show/Hide Recurring Options
+        document.getElementById("recurring_meeting").addEventListener('change', function() {
+            var recurringOptions = document.getElementById("recurring_options");
+            recurringOptions.style.display = this.checked ? "block" : "none";
+        });
+    </script>
+</body>
+</html>

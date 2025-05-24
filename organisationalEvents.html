@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisational Event Management</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="number"], input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #totalBudget {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Organisational Event Management</h1>
+    </header>
+
+    <div class="content">
+        <form action="save_organisational_event.php" method="POST" id="organisationalEventForm">
+
+
+            <!-- Event Details Section -->
+            <div class="section">
+                <h2>Event Details</h2>
+                <div class="input-group">
+                    <label for="event_name">Event Name</label>
+                    <input type="text" id="event_name" name="event_name1" placeholder="Event Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_date">Event Date</label>
+                    <input type="date" id="event_date" name="event_date1" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_description">Event Description</label>
+                    <textarea id="event_description" name="event_description1" placeholder="Describe the event" required></textarea>
+                </div>
+            </div>
+
+            <!-- Budgeting Section -->
+            <div class="section">
+                <h2>Budgeting</h2>
+                <table id="budgetTable">
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="budget_category[]" placeholder="Category" required></td>
+                        <td><input type="number" name="budget_amount[]" placeholder="Amount" oninput="calculateTotal()" required></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="addBudgetRow()">Add Budget Row</button>
+                <div id="totalBudget">Total Budget: ₹0.00</div>
+            </div>
+
+            <!-- To-Do List Section -->
+            <div class="section">
+                <h2>To-Do List</h2>
+                <input type="text" id="todoInput" name="todo1" placeholder="Add a task">
+                <button type="button" onclick="addTodo()">Add Task</button>
+                <ul id="todoList"></ul>
+            </div>
+
+            <!-- Materials Section -->
+            <div class="section">
+                <h2>Materials</h2>
+                <textarea name="materials" placeholder="List materials needed" required></textarea>
+            </div>
+
+            <button type="submit">Submit Event</button>
+
+        </form>
+    </div>
+
+    <script>
+        // Add Budget Row
+        function addBudgetRow() {
+            var table = document.getElementById("budgetTable");
+            var row = table.insertRow();
+            var categoryCell = row.insertCell(0);
+            var amountCell = row.insertCell(1);
+            categoryCell.innerHTML = '<input type="text" name="budget_category[]" placeholder="Category">';
+            amountCell.innerHTML = '<input type="number" name="budget_amount[]" placeholder="Amount" oninput="calculateTotal()">';
+        }
+
+        // Add To-Do Item
+        function addTodo() {
+            var todoInput = document.getElementById("todoInput");
+            if (todoInput.value) {
+                var li = document.createElement("li");
+                li.textContent = todoInput.value;
+                document.getElementById("todoList").appendChild(li);
+                todoInput.value = ""; // Clear the input field
+            }
+        }
+
+        // Calculate the Total Budget Sum
+        function calculateTotal() {
+            var total = 0;
+            var amounts = document.querySelectorAll('input[name="budget_amount[]"]');
+            amounts.forEach(function(input) {
+                if (input.value) {
+                    total += parseFloat(input.value);
+                }
+            });
+
+            // Update the Total Budget display
+            document.getElementById('totalBudget').textContent = 'Total Budget: ₹' + total.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>

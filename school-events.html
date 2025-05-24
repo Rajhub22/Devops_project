@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Event Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        header .dashboard-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        header .dashboard-link:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="number"], input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+        button {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .total-budget {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Event Management</h1>
+        
+        <a href="display_school_events.php" class="dashboard-link">Back</a>
+    </header>
+
+    <div class="content">
+        <form action="save_school_event.php" method="POST" id="schoolEventForm">
+
+            <!-- Event Details Section -->
+            <div class="section">
+                <h2>Event Details</h2>
+                <div class="input-group">
+                    <label for="event_name">Event Name</label>
+                    <input type="text" id="event_name" name="event_name" placeholder="Event Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_date">Event Date</label>
+                    <input type="date" id="event_date" name="event_date" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_description">Event Description</label>
+                    <textarea id="event_description" name="event_description" placeholder="Describe the event" required></textarea>
+                </div>
+            </div>
+
+            <!-- Budget Section -->
+            <div class="section">
+                <h2>Budgeting</h2>
+                <table id="budgetTable">
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="budget_category[]" placeholder="Category"></td>
+                        <td><input type="number" name="budget_amount[]" placeholder="Amount" oninput="calculateTotal()"></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="addBudgetRow()">Add Budget Row</button>
+                <div class="total-budget">
+                    Total Budget Amount: <span id="totalAmount">0.00</span>
+                </div>
+            </div>
+
+            <!-- To-Do List Section -->
+            <div class="section">
+                <h2>To-Do List</h2>
+                <input type="text" id="todoInput" name="todo[]" placeholder="Add a task">
+                <button type="button" onclick="addTodo()">Add Task</button>
+                <ul id="todoList"></ul>
+            </div>
+
+            <!-- Materials Section -->
+            <div class="section">
+                <h2>Materials</h2>
+                <textarea name="materials" placeholder="List materials needed"></textarea>
+            </div>
+
+            <button type="submit">Submit Event</button>
+
+        </form>
+    </div>
+
+    <script>
+        // Add Budget Row
+        function addBudgetRow() {
+            var table = document.getElementById("budgetTable");
+            var row = table.insertRow();
+            var categoryCell = row.insertCell(0);
+            var amountCell = row.insertCell(1);
+            categoryCell.innerHTML = '<input type="text" name="budget_category[]" placeholder="Category">';
+            amountCell.innerHTML = '<input type="number" name="budget_amount[]" placeholder="Amount" oninput="calculateTotal()">';
+            calculateTotal(); // Recalculate total when a new row is added
+        }
+    
+        // Add To-Do Item
+        function addTodo() {
+            var todoInput = document.getElementById("todoInput");
+            if (todoInput.value) {
+                var li = document.createElement("li");
+                li.textContent = todoInput.value;
+                document.getElementById("todoList").appendChild(li);
+                todoInput.value = ""; // Clear the input field
+            }
+        }
+    
+        // Calculate Total Budget Amount
+        function calculateTotal() {
+            var totalAmount = 0;
+            var budgetAmounts = document.querySelectorAll('input[name="budget_amount[]"]');
+            
+            // Sum up the values from all the budget rows
+            budgetAmounts.forEach(function(input) {
+                var value = parseFloat(input.value);
+                if (!isNaN(value)) {
+                    totalAmount += value;
+                }
+            });
+            
+            // Format the total amount as Indian Rupees (₹)
+            var formattedTotal = formatCurrency(totalAmount);
+    
+            // Display the total amount in the page
+            document.getElementById('totalAmount').textContent = formattedTotal;
+        }
+    
+        // Format the number as Indian Rupees
+        function formatCurrency(amount) {
+            // Convert to Indian currency format
+            return "₹" + amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+    </script>
+    
+
+</body>
+</html>

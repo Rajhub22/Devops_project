@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summit Event Management</title>
+    <link rel="stylesheet" href="style.css">
+</head> <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+    header .dashboard-link {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1em;
+    }
+    header .dashboard-link:hover {
+        text-decoration: underline;
+    }
+    .content {
+        padding: 20px;
+    }
+    .section {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .section h2 {
+        color: #333;
+    }
+    .input-group {
+        margin-bottom: 15px;
+    }
+    input[type="text"], input[type="number"], input[type="date"], textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+    }
+    button {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .total-budget {
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <header>
+        <h1>Summit Event Management</h1>
+        <a href="display_summit_events.php" class="dashboard-link">Back</a>
+    </header>
+
+    <div class="content">
+        <form action="save_summit_event.php" method="POST" id="summitEventForm">
+            <!-- Event Details -->
+            <div class="section">
+                <h2>Event Details</h2>
+                <div class="input-group">
+                    <label for="event_name">Event Name</label>
+                    <input type="text" id="event_name" name="event_name" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_start_date">Event Start Date</label>
+                    <input type="date" id="event_start_date" name="event_start_date" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_end_date">Event End Date</label>
+                    <input type="date" id="event_end_date" name="event_end_date" required>
+                </div>
+                <div class="input-group">
+                    <label for="event_description">Event Description</label>
+                    <textarea id="event_description" name="event_description" required></textarea>
+                </div>
+            </div>
+
+
+            <!-- Materials -->
+            <div class="section">
+                <h2>Materials</h2>
+                <select name="materials" id="materials">
+                    <option value="">Select Material</option>
+                    <option value="projector">Projector</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="whiteboard">Whiteboard</option>
+                </select>
+            </div>
+
+            <button type="submit">Save Event</button>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Amour Login Form</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 0 10px;
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #ffffff; /* Solid white background */
+    }
+
+    .form-container {
+      width: 600px;
+      height: auto;
+      border-radius: 12px;
+      padding: 50px;
+      text-align: center;
+      border: 2px solid #1b1919; /* Black border */
+      background: #f9f9f9; /* Slightly off-white background for contrast */
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #000; /* Black text */
+    }
+
+    .input-field {
+      position: relative;
+      border-bottom: 2px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .input-field input {
+      width: 100%;
+      height: 50px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      color: #000; /* Black text */
+    }
+
+    .input-field label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-200%);
+      color: #121111; /* Black label */
+      font-size: 20px;
+      pointer-events: none;
+      transition: 0.2s ease;
+    }
+
+    .input-field input:focus ~ label,
+    .input-field input:valid ~ label {
+      top: 0;
+      transform: translateY(-100%);
+      font-size: 16px;
+      color: #444; /* Darker gray when focused */
+    }
+
+    .form-container button {
+      background: #000; /* Black button */
+      color: #fff; /* White text */
+      font-weight: 600;
+      border: none;
+      padding: 14px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      border: 2px solid transparent;
+      transition: 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background: #444; /* Dark gray on hover */
+      border-color: #000;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #555; /* Medium gray text */
+      font-size: 16px; /* Increased font size by 2px */
+    }
+
+    .form-footer a {
+      color: #000; /* Black links */
+      text-decoration: none;
+      font-size: 18px; /* Increased font size by 2px */
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    label[for="remember"] {
+      color: #000000; /* Medium gray */
+      font-size: 18px; /* Increased font size by 2px */
+    }
+
+    a {
+      color: #000; /* Black links */
+    }
+
+    /* Increase size of checkbox and text */
+    input[type="checkbox"] {
+      transform: scale(1.2); /* Increase size of checkbox */
+    }
+
+    p {
+      font-size: 19px; /* Increased font size by 2px for the text next to the checkbox */
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form action="login.php" method="POST" style="display: flex; flex-direction: column;">
+      <h2>Login</h2>
+      
+      <div class="input-field">
+        <input type="email" required>
+        <label>Enter your email</label>
+      </div>
+
+      <div class="input-field">
+        <input type="password" required>
+        <label>Enter your password</label>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; margin: 35px 0; color: #555;">
+        <label for="remember" style="display: flex; align-items: center;">
+          <input type="checkbox" id="remember" style="accent-color: #000;">
+          <p>Remember me</p>
+        </label>
+        <a href="Forgot.html"><p>Forgot password?</p></a>
+      </div>
+
+      <button type="submit">Log In</button>
+      
+      <div class="form-footer">
+        <p>Don't have an account? <a href="register.php">SignUp </a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

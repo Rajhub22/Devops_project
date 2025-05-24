@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Review | Aura & Amour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header Styles */
+        header {
+            background-color: #000000;
+            color: #fff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            color: #ffffff;
+        }
+        /* Form Section */
+        .review-section {
+            padding: 60px 8%;
+            margin: 60px auto;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        .review-section h2 {
+            font-size: 3.0em;
+            margin-bottom: 40px;
+            color: #000000;
+            font-family: 'Playfair Display', serif;
+        }
+        .review-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .review-form input, .review-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+        .review-form textarea {
+            height: 150px;
+        }
+        .review-form button {
+            background-color: #000000;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .review-form button:hover {
+            background-color: #a95252;
+        }
+        /* Footer */
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 1.1em;
+        }
+        footer a {
+            color: #fbfaf8;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Aura & Amour</div>
+        <a href="Menu.html" style="display: inline-block; background-color: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 10px; font-size: 1.5em; text-align: center; transition: background-color 0.3s ease;">
+            Menu
+        </a>
+    </header>
+
+    <!-- Review Section -->
+    <section class="review-section">
+        <h2>Submit Your Review</h2>
+        <form action="submit_review.php" method="POST" class="review-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="review" placeholder="Your Review" required></textarea>
+            <button type="submit">Submit Review</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Aura & Amour | <a href="Contact.html">Contact Us</a></p>
+    </footer>
+</body>
+</html>

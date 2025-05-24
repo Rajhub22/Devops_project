@@ -1,0 +1,47 @@
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
+{
+    "budgeting": [
+        {
+            "category": "Cake",
+            "amount": "1"
+        }
+    ],
+    "todo_list": "",
+    "materials_needed": "aaa"
+}
+
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
+{
+    "budgeting": [],
+    "todo_list": "",
+    "materials_needed": ""
+}
+
