@@ -1,17 +1,8 @@
-FROM node:18
+# Use official PHP with Apache image
+FROM php:8.0-apache
 
-# Set working directory
-WORKDIR /app
+# Copy all your project files to Apache web root
+COPY . /var/www/html/
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy app source
-COPY . .
-
-# Expose the app port
-EXPOSE 3000
-
-# Run the app
-CMD ["node", "index.js"]
+# Expose port 80 (web server port)
+EXPOSE 80
