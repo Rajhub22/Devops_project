@@ -1,11 +1,16 @@
-# Use official Nginx image
-FROM nginx:alpine
+# Use a base image
+FROM node:18
 
-# Remove default Nginx files
-RUN rm -rf /usr/share/nginx/html/*
+# Set working directory
+WORKDIR /app
 
-# Copy your static site content
-COPY . /usr/share/nginx/html
+# Copy files
+COPY . .
 
-# Expose port 80
-EXPOSE 80
+# Install dependencies
+RUN npm install
+
+# Start the app
+CMD ["npm", "start"]
+
+EXPOSE 8080
