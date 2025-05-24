@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
+        stage('Clone Repository') {
             steps {
                 git 'https://github.com/Rajhub22/Devops_project.git'
             }
@@ -10,13 +10,17 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t file-management-system .'
+                script {
+                    dockerImage = docker.build("rajhub-node-app")
+                }
             }
         }
 
-        stage('Run Container') {
+        stage('Run Docker Container') {
             steps {
-                bat 'docker run -d -p 8080:8080 --name fms-container file-management-system'
+                script {
+                    dockerImage.run("-p 3000:3000")
+                }
             }
         }
     }
