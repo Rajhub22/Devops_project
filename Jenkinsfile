@@ -11,7 +11,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("rajhub-node-app")
+                    // Build docker image using Dockerfile in repo root
+                    dockerImage = docker.build("rajhub-php-app")
                 }
             }
         }
@@ -19,7 +20,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    dockerImage.run("-p 3000:3000")
+                    // Run container and map port 80 to host port 8080
+                    dockerImage.run("-p 8080:80")
                 }
             }
         }
