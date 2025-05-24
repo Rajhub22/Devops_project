@@ -2,26 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout SCM') {
             steps {
-                git 'https://github.com/Rajhub22/Devops_project.git'
+                checkout scm
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build docker image using Dockerfile in repo root
-                    dockerImage = docker.build("rajhub-php-app")
+                    bat 'docker build -t rajhub-php-app .'
                 }
             }
         }
-
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Run container and map port 80 to host port 8080
-                    dockerImage.run("-p 8080:80")
+                    // Run container mapping port 8081 on host to 80 in container
+                    bat 'docker run -d -p 8081:80 rajhub-php-app'
                 }
             }
         }
