@@ -7,18 +7,16 @@ pipeline {
                 git 'https://github.com/Rajhub22/Devops_project.git'
             }
         }
+
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devops-image .'
+                bat 'docker build -t file-management-system .'
             }
         }
+
         stage('Run Container') {
             steps {
-                sh '''
-                    docker stop fileapp || true
-                    docker rm fileapp || true
-                    docker run -d --name fileapp -p 8082:80 devops-image
-                '''
+                bat 'docker run -d -p 8080:8080 --name fms-container file-management-system'
             }
         }
     }
