@@ -10,10 +10,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('Devops_project') {
-                    script {
-                        dockerImage = docker.build("rajhub-node-app")
-                    }
+                script {
+                    dockerImage = docker.build("rajhub-node-app")
                 }
             }
         }
